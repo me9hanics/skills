@@ -1,0 +1,6 @@
+interface:
+  display_name: "Design Agent Harness - original"
+  short_description: "Choose the right agent harness primitives"
+  default_prompt: "Use $design-agent-harness-original to design an agent-driven version of this workflow."
+policy:
+  allow_implicit_invocation: false
