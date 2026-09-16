@@ -1,0 +1,4 @@
+interface:
+  display_name: "LLM Coding Guidelines"
+  short_description: "Disciplined, surgical coding workflow"
+  default_prompt: "Use $llm-coding-guidelines for this coding task."
