@@ -29,3 +29,7 @@ This is not a summary or rewrite from scratch. Add no new claims, explanations, 
 ## Output
 
 Return only the rephrased text, with no preface, commentary, change log, or alternative version unless the user asks for one.
+
+## Optional edits
+
+If the user requests, you may also do some more text improvements. In this case, you can remove (especially if text doesn't belong there) and merge sentences/parts, but you shall not add new parts (such as "Summary" or so).
