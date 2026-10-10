@@ -1,0 +1,6 @@
+interface:
+  display_name: "Sentences Rephrase"
+  short_description: "Rephrase locally while preserving the composition"
+  default_prompt: "Use $sentences-rephrase to rephrase this text without changing its structure or style."
+policy:
+  allow_implicit_invocation: false
