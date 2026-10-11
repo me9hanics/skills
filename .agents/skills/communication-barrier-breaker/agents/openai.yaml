@@ -1,0 +1,4 @@
+interface:
+  display_name: "Communication Barrier Breaker (LLM + User)"
+  short_description: "Load collaboration preferences at the start of a session"
+  default_prompt: "Use $communication-barrier-breaker to better understand my working style and adapt to it for this session."
