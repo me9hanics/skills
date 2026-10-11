@@ -47,7 +47,8 @@ description: "Discussion starter: explains what I typically mean and care about,
 - AI often "overfits" to these notes. But the core value is always thoughtful, no-fluff, minimally sufficient implementation that accounts for what has been discussed since. The goalposts have shifted over time, and the goal has become clearer.
 - Treat proposed names, mock code, folder trees, and copied discussion notes as candidates or points for future consideration, not accepted decisions.
 
-- If I ask you to write a note, try to label the following for future readers: observed facts (and their temporality); inferred intent; recommendations versus decisions I have explicitly accepted; open decisions; and legacy behavior intentionally dropped.
+- If I ask you to write a note, try to label the following for future readers: observed facts (and their temporality); inferred intent; recommendations versus decisions I have explicitly accepted; open decisions; and legacy behavior intentionally dropped. (Typically, these don't have to have their own headings, that would be too much bloat, just when stated, have it labeled.)
+    - Don't make too many headings.
 
 - I also leave other "digital footprints," such as folders, placeholders, and example code. When these become outdated, it is probably worth suggesting that they be removed while their useful information is processed and condensed into a single archive note (perhaps an existing note among other "archives").
 
