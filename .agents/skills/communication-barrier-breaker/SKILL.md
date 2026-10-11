@@ -1,87 +1,86 @@
 ---
 name: communication-barrier-breaker
-description: "Discussion starter: explains what I typically mean and care about, and how you should adapt your behavior accordingly. Load this skill once when I start a new session."
+description: "Discussion starter: explains what I typically mean and care about, and how you should adapt. Load once at the start of a session."
 ---
 
 # Communication barrier breaker
 
 ## My style of working
 
-### Distinguished workflow modes
+### Workflow modes
 
-- A repo/project may be **incomplete**, **suboptimal** or **well-working**; depending on the part and scope considered. These may overlap. Tasks may be extensions or fixes in capabilities, or designs (of the system, towards a well-working system, etc.).
+- A repo/project or area may be **incomplete**, **suboptimal**, or **well-working**, depending on the part and scope considered. These descriptions can overlap. Tasks may involve extending capabilities, fixing behavior, or designs (of an area, towards a well-working system, etc.).
 
 - I distinguish separate workflow modes / states-situations:
-    - **Design mode**: Establishing a well-working system/area design, typically when starting from scratch (incompleteness). In the state of deciding what a well-working design should look like - implementation is in later cycles.
-    - **Transition mode**: The state of moving a suboptimal system toward a well-working one. Typically redesigning separately (in a new folder) meanwhile taking inspiration from old implementation where useful.
-    - **Maintain**: Maintaining a well-working system - design is already proper, fundamental changes are not expected.
+    - **Design mode**: Establish what a well-working system/area should look like, typically from scratch (incompleteness). The state of refining the design - implementation comes in later cycles.
+    - **Transition mode**: The state of moving a suboptimal system toward a well-working one. Typically, develop the replacement separately, such as in a new folder, drawing on the old implementation where useful.
+    - **Maintain mode**: Maintaining a well-working system. Its design is already proper; fundamental changes are not expected.
 
-- **Extensions** improve or add capabilities; **fixes** correct behaviour. Can happen in both well-working systems and suboptimal ones - in Transition mode it may occur that a redesign is only planned for later, receiving fixes and extensions in the meanwhile.
+- **Extensions** improve or add capabilities; **fixes** correct behavior. Both can happen in well-working or suboptimal systems. During a transition, the current implementation may still receive fixes and extensions while redesign is deferred.
 
 ### My typical workflows
 
-- When working on projects, I prefer to decide the "overview" iteratively - how things should *look* in the implementation and so on - through back-and-forth discussions with agents. Therefore, I care greatly about how the resulting code will look, what I should expect to see, and similar details. This is true for data models (what data classes should I have? "data contracts"? what should shared data look like?), but it also applies to implementations, code-quality tools, and so on.
+- I prefer to establish the overall design iteratively through back-and-forth discussions with agents. I care about what the resulting code will look like and what I should expect to see. This includes data models—which dataclasses or data contracts to use, what shared data should look like—as well as implementations and code-quality tools.
     - This is generally worthwhile unless I ask for something to be implemented quickly.
 
-- My workflow is often hybrid and iterative: I formulate ideas, create mocks, and give them to AI for analysis ("completion"), evaluation, and challenges, usually with mock code. I then consider those points, respond to them, clarify further, perhaps implement some things along the way, and iterate.
-  - Notably, entire designs can change after a few iterations.
-  - A user correction after an iteration can easily invalidate the surrounding reasoning, not just one part (or "sentence"). The agent may need to revisit its recommendations.
-  - I also use AI engineering tools such as AI skills.
+- My workflow is often hybrid and iterative: I formulate ideas and mocks, usually with mock code, then ask AI for analysis ("idea completion"), evaluate, and challenge them. I consider the feedback, clarify, sometimes implement parts along the way, and iterate.
+    - Entire designs can change after a few iterations.
+    - A correction can invalidate the surrounding reasoning, not just one detail. Revisit recommendations accordingly.
+    - I also use AI engineering tools such as skills.
 
-- My requests include both "help me think" and "do the work" (or often "complete the work"). For example, "what is missing?" and "what would you suggest?" typically call for advice rather than implementation, with small examples where useful. Exploration, proposal, or implementation modes.
-    - "Do the work," when it covers a larger chunk, should still be approached carefully. Reverts are not always easy because of substantial uncommitted work and sketches, so do not rely on Git when the baseline is already dirty. Before making risky changes, briefly present the exact proposed action and ask, "Can I?"
-    - Before a broad edit, summarize the exact files and behavioral changes you propose. Approval should be tied to that concrete change set.
+- My requests include both "help me think" and "do the work" / "complete the work." Questions such as "what is missing?" and "what would you suggest?" typically call for advice, with small examples where useful. Distinguish exploration, proposal, and implementation.
+    - Approach larger tasks carefully. Substantial uncommitted work and sketches can make reverts difficult, so do not rely on Git when the baseline is dirty. Before risky changes, present the exact proposed action and ask, "can I?"
+    - Before a broad edit, summarize the exact files and behavioral changes proposed. Tie approval to that concrete change set.
 
-- I often create mock implementations for AI to understand (or complete). This is a way of suggesting how I envision the implementation, but it is not final.
-    - I typically do not provide full examples, only "brainstorming" examples of how the data or code might look, leaving room for good design. This is especially apparent when I deliberately leave parts empty or use "..." in places. This typically indicates that it is an "idea scratch," not a final "implementation."
+- I often create mock implementations for AI to understand or complete. These suggest how I envision the implementation; they are not final.
+    - My examples are usually brainstorming sketches, leaving room for design. Empty sections or `...` often signal an "idea scratch," not a finished implementation.
 
-- For pipelines, I primarily value modularity and easy reproducibility. I value orchestration and visibility. Pipelines should be able to start from a later stage when given that stage's input. I do not pay for services such as Apache Airflow or other DAG tools, but I draw inspiration from them. Kedro is a tool I like for data pipelines. With Python, I like to define dataclasses for the different parts: what the input data looks like, how the output should be passed, and so on, perhaps including some metadata.
-    - On the other hand, I do not create a dataclass (and object) after every step. I create them only at points relevant to the user. Often, this means just the input, the final output, and perhaps one intermediate stage.
-    - I like to identify each stage's input, output, and "ownership," as well as whether it is X-neutral or X-specific when relevant.
-- I often like pipelines - whether data-driven, AI-engineering, or otherwise - to produce artifacts and organize them in folders such as *thing*/*date*/raw, .../semi-processed, .../processed, and so on.
+- For pipelines, I value modularity, reproducibility, orchestration, and visibility. A pipeline should support starting at a later stage when given that stage’s input. I draw inspiration from Apache Airflow and other DAG tools without paying for those services. I like Kedro for data pipelines. In Python, I like to define dataclasses for different parts: to describe inputs, outputs, etc. and sometimes metadata.
+    - On the other hand I like dataclasses only at points relevant to the user, often just the input, final output, and perhaps one intermediate stage.
+    - I value identifying each stage’s input, output, and ownership, and whether it is X-neutral or X-specific where relevant.
 
-- I prefer conceptual minimality to "surgical" compatibility work.
-"Before preserving compatibility, it helps to ask: who is the concrete consumer that needs it? If none is known, it may be an optional cost." & "Which component actually consumes this?"
+- I often like pipelines (data, AI engineering, or other) to produce artifacts organized into folders such as `thing/date/raw`, `.../semi-processed`, or `.../processed`.
+
+- I prefer conceptual minimality to "surgical" compatibility work. Before preserving compatibility, ask which concrete consumer needs it. If none is known, compatibility may be an optional cost. Also: "Which component actually consumes this?"
 
 ### Note-taking
 
-- When writing notes, I capture a lot of raw material with little decision value; it is mainly "wants and needs" brainstorming. This includes:
-    - brainstorming with AI, copied discussions, and written-down suggestions
-    - discussions with colleagues or others
-    - my own intuitions and suggestions for later
-    - any source of information that could affect later decisions
-- However, these notes lose decision relevance very quickly. Most were never based on the full picture, and over time I have found better ways to communicate my vision. Their main purpose is to keep "snippets of separate information" available somewhere so that we do not lose aspects worth considering.
-    - "Historical notes are evidence and idea reservoirs. Evidence to synthesize, not requirements to preserve."
+- My notes capture a lot of raw material with little decision value, mainly "wants and needs" brainstorming, including:
+    - copied AI discussions and suggestions
+    - conversations with colleagues or others
+    - my own intuitions and ideas for later
+    - other information that could affect future decisions
+
+- Such notes quickly lose decision relevance. Most never reflected the full picture, and I find better ways to communicate my vision over time. Their main purpose is to retain all snippets of information available to not lose aspects worth considering.
+    - Historical notes are evidence and idea reservoirs: material to synthesize, not requirements to preserve.
     - Decision drift is common, and old notes become obsolete.
 
-- I plan to process some of the raw notes. I am actively planning to put them in notes/raw/ while extracting the concrete statements and information as bullet points into more condensed, processed Markdown files, with less emphasis on historically irrelevant claims. Insight is more valuable here than an embodied but obsolete implementation. These files would also be continuously updated.
+- I plan to put raw notes in `notes/raw/` and extract concrete information as bulletpoints into condensed, continuously updated Markdown files. Less weight to outdated claims, insight is more valuable here than obsolete implementations.
 
-- AI often "overfits" to these notes. But the core value is always thoughtful, no-fluff, minimally sufficient implementation that accounts for what has been discussed since. The goalposts have shifted over time, and the goal has become clearer.
-- Treat proposed names, mock code, folder trees, and copied discussion notes as candidates or points for future consideration, not accepted decisions.
+- AI often overfits to these notes. But the core value is always thoughtful, no-fluff, minimally sufficient implementation (informed by subsequent discussions). The goal may have changed or become clearer.
 
-- If I ask you to write a note, try to label the following for future readers: observed facts (and their temporality); inferred intent; recommendations versus decisions I have explicitly accepted; open decisions; and legacy behavior intentionally dropped. (Typically, these don't have to have their own headings, that would be too much bloat, just when stated, have it labeled.)
-    - Don't make too many headings.
+- Treat proposed names, mock code, folder trees, and copied discussions as candidates for consideration, not accepted decisions.
 
-- I also leave other "digital footprints," such as folders, placeholders, and example code. When these become outdated, it is probably worth suggesting that they be removed while their useful information is processed and condensed into a single archive note (perhaps an existing note among other "archives").
+- When writing notes for me, distinguish observed facts and when they apply; inferred intent; recommendations versus explicitly accepted decisions; open decisions; and legacy behavior intentionally dropped. Label these inline where practical, without proliferating headings.
 
-- These footprints add uncommittable clutter to the repository, so watch out for them.
+- I also leave "digital footprints": folders, placeholders, and example code. When outdated, suggest removing them while condensing useful information into an archive note, possibly an existing one.
+    - Watch for the uncommittable clutter these leave in the repository.
 
 ## Mutual understanding
 
-- AI agents commonly try to "preserve" an existing design to "avoid breaking existing downstream workflows." My typical workflows neither require nor favor this.
-What is actually relevant to me is a good, maintainable, clear, and understandable design. I prefer a more greenfield approach: design the right solution first, then convert from the old design afterward if necessary.
-Backward compatibility is typically not a default requirement for my work.
+- Agents often preserve existing designs to avoid breaking downstream workflows. My work typically does not require or favor this. What is primary is clear, understandable, maintainable design. I prefer to design the right solution first, then convert from the old design if necessary. Backward compatibility is generally not a default requirement in my work.
 
-- Because my workflows are mainly personal or internal, they typically have no external policies, and I own the decisions.
+- My workflows are mainly personal or internal, typically without external policies, and I own the decisions.
 
-- Good design does not mean considering every case and handling each with a special case that shapes the overall design. Good design is elegance. It means elegant code that is not overspecified and is very easy for a human to understand. I strongly prefer not adding complexity to the code for niche scenarios. This runs counter to typical agentic design, in which agents define many classes, methods, tests, and so on to cover every possibility at once.
-Example: I have seen two parallel pipelines that overlapped heavily, yet agents insisted on keeping their implementations separate (with two different classes and so on). In fact, the preferred design would consider where classes, dataclasses, and functions are needed and how they fit together ("elegantly"). In this case, a data model clearly fit (hence a dataclass), but one was enough, with each pipeline calling the same shared pipeline functionality and handling it slightly differently. The two were split only in the "main" code; all functionality was shared.
-- I believe that for a complex system to work close to optimally, it must find the golden middle ground; no extreme is near-optimal. Neither no abstraction nor total abstraction is desirable. Instead, simplicity should encompass complexity. We should aim for the sweet spot on the spectrum between compactness and task specificity (neither the most general solution nor the minimal design in the Kolmogorov-complexity sense).
+- Good design is elegant, understandable, and sufficiently specified. I strongly prefer keeping niche scenarios from complicating the overall design. Agents often add classes, methods, and tests to cover every possibility at once.
+    - For example, agents have insisted on separate implementations for two heavily overlapping pipelines. One shared data model and shared functions were sufficient, with each pipeline handling them slightly differently. Only the orchestration in the "main" code needed to differ.
 
-- Minimal implementation means minimal conceptual complexity, not minimal edits to a poor existing structure. I often prefer replacing an awkward design over preserving it.
+- I believe that to achieve close-to-optimality in a complex system, it needs a middle ground between no abstraction and total abstraction; no extreme is near-optimal. Simplicity should encompass complexity. Aim for the sweetspot between compactness and task specificity, rather than maximum generality or minimum size in the Kolmogorov-complexity sense.
+
+- Minimal implementation means minimal conceptual complexity, not minimal edits to a poor structure. I often prefer replacing an awkward design over preserving it.
     - "More code exists" is not evidence that it should be preserved.
 
-- Before using an old implementation, explain what unique behavior it contains and whether that behavior is still wanted. Try to provide a comparative analysis of it against the new expectations.
-  - During a transition, I prefer not to add compatibility bridges, repair legacy imports, or preserve a runnable intermediate state unless a concrete current "consumer" or similar need has been identified.
+- Before reusing an old implementation, explain its unique behavior, whether that behavior is still wanted, and how it compares with the new expectations.
+    - During a transition, avoid compatibility bridges, legacy import repairs, or preserving a runnable intermediate state unless a concrete current consumer or other need has been identified.
 
-- I prefer facts, estimates, and hypotheses to be separated. (Previous conclusions may also have been too strong and need correction.)
+- Distinguish facts, estimates, and hypotheses. Earlier conclusions may have been too strong and need correction.
