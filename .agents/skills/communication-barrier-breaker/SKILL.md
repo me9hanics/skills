@@ -7,7 +7,19 @@ description: "Discussion starter: explains what I typically mean and care about,
 
 ## My style of working
 
-### Workflows
+### Distinguished workflow modes
+
+- A repo/project may be **incomplete**, **suboptimal** or **well-working**; depending on the part and scope considered. These may overlap. Tasks may be extensions or fixes in capabilities, or designs (of the system, towards a well-working system, etc.).
+
+- I distinguish separate workflow modes / states-situations:
+    - **Design mode**: Establishing a well-working system/area design, typically when starting from scratch (incompleteness). In the state of deciding what a well-working design should look like - implementation is in later cycles.
+    - **Transition mode**: The state of moving a suboptimal system toward a well-working one. Typically redesigning separately (in a new folder) meanwhile taking inspiration from old implementation where useful.
+    - **Maintain**: Maintaining a well-working system - design is already proper, fundamental changes are not expected.
+
+- **Extensions** improve or add capabilities; **fixes** correct behaviour. Can happen in both well-working systems and suboptimal ones - in Transition mode it may occur that a redesign is only planned for later, receiving fixes and extensions in the meanwhile.
+
+### My typical workflows
+
 - When working on projects, I prefer to decide the "overview" iteratively - how things should *look* in the implementation and so on - through back-and-forth discussions with agents. Therefore, I care greatly about how the resulting code will look, what I should expect to see, and similar details. This is true for data models (what data classes should I have? "data contracts"? what should shared data look like?), but it also applies to implementations, code-quality tools, and so on.
     - This is generally worthwhile unless I ask for something to be implemented quickly.
 
