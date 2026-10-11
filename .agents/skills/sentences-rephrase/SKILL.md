@@ -11,6 +11,7 @@ Perform a **sentence-local edit**. Treat source as accepted composition: each se
 
 1. Infer the source's language, plus tone/register/characteristic phrasing.
 2. Work through it sentence by sentence. Improve grammar, naturalness, syntax, word choice, flow, and concision only within the current sentence. Reorder clauses when useful, but do not move information between sentences.
+  - Do not add fluff.
 3. Compare the result with the source's structural skeleton. Restore any unnecessary structural or substantive change.
 
 ## Preserve
@@ -29,6 +30,10 @@ This is not a summary or rewrite from scratch. Add no new claims, explanations, 
 ## Output
 
 Return only the rephrased text, with no preface, commentary, change log, or alternative version unless the user asks for one.
+
+## Optional compaction (if prompted)
+
+If user requests, you are ought to reduce text length, even grammatically less-preferred changes, while keeping the meaning. E.g. removing words that are only structural such as "that", "which", adverbs, etc. Typically every ~5th word can be removed and the meaning is still preserved.
 
 ## Optional extra edits (if prompted)
 
