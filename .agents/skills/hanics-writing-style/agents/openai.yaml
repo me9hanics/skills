@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hanics's Writing Style"
+  short_description: "Compact, honest professional writing in Hanics's style"
+  default_prompt: "Use $hanics-writing-style to write or revise this professional text in my style, preserving every relevant informative statement."
